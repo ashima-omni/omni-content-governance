@@ -1,0 +1,44 @@
+# Omni view over bi_governance.dashboard_similarity
+# Place in your model as dashboard_similarity.view.
+
+schema: bi_governance
+table_name: dashboard_similarity
+
+dimensions:
+  snapshot_date:
+    sql: '"SNAPSHOT_DATE"'
+    timeframes: [date, week, month]
+  doc_id_a:
+    sql: '"DOC_ID_A"'
+  doc_name_a:
+    sql: '"DOC_NAME_A"'
+  doc_id_b:
+    sql: '"DOC_ID_B"'
+  doc_name_b:
+    sql: '"DOC_NAME_B"'
+  shared_tiles:
+    sql: '"SHARED_TILES"'
+  similarity:
+    sql: '"SIMILARITY"'
+  verdict:
+    sql: '"VERDICT"'
+  pair:
+    sql: 'CONCAT("DOC_NAME_A", '' <> '', "DOC_NAME_B")'
+
+measures:
+  pair_count:
+    aggregate_type: count
+  merge_candidates:
+    aggregate_type: count
+    filters:
+      verdict: merge_candidate
+  exact_duplicates:
+    aggregate_type: count
+    filters:
+      verdict: exact_duplicate
+  max_similarity:
+    aggregate_type: max
+    sql: '"SIMILARITY"'
+  avg_similarity:
+    aggregate_type: average
+    sql: '"SIMILARITY"'
