@@ -1,0 +1,16 @@
+# Topic for the governance dashboard and AI querying.
+# Place in your model as content_governance.topic (base view: dashboard_similarity).
+
+base_view: dashboard_similarity
+label: Content Governance
+
+joins: {}
+
+ai_context: |
+  Content governance for this Omni instance. dashboard_similarity holds
+  pairwise duplicate scores between dashboards: similarity is Jaccard overlap
+  of tile queries (1.0 = identical, >= 0.7 = merge candidate). Use the latest
+  snapshot_date unless asked for trends. Typical questions: which dashboards
+  are near-duplicates, how many merge candidates exist, is duplication
+  trending down. The lineage view (separate topic if joined) maps documents
+  to the views and fields their tiles query.
