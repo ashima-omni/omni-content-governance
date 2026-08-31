@@ -1,0 +1,5 @@
+requests>=2.31
+pandas>=2.0
+# Warehouse loaders - install the one you need:
+# pandas-gbq>=0.20                            # BigQuery
+# snowflake-connector-python[pandas]>=3.0     # Snowflake
