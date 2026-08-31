@@ -1,0 +1,51 @@
+# Omni view over bi_governance.lineage
+# Place in your model as lineage.view (adjust schema to match your connection).
+
+schema: bi_governance
+table_name: lineage
+
+dimensions:
+  snapshot_date:
+    sql: '"SNAPSHOT_DATE"'
+    timeframes: [date, week, month]
+  doc_id:
+    sql: '"DOC_ID"'
+  document:
+    sql: '"DOCUMENT"'
+  folder_path:
+    sql: '"FOLDER_PATH"'
+  owner_name:
+    sql: '"OWNER_NAME"'
+  tile:
+    sql: '"TILE"'
+  tile_url:
+    sql: '"TILE_URL"'
+  tile_hash:
+    sql: '"TILE_HASH"'
+  topic:
+    sql: '"TOPIC"'
+  view_name:
+    sql: '"VIEW_NAME"'
+  field_name:
+    sql: '"FIELD_NAME"'
+  doc_views:
+    sql: '"DOC_VIEWS"'
+  updated_at:
+    sql: '"UPDATED_AT"'
+    timeframes: [date, week, month]
+
+measures:
+  distinct_documents:
+    aggregate_type: count_distinct
+    sql: '"DOC_ID"'
+  distinct_views:
+    aggregate_type: count_distinct
+    sql: '"VIEW_NAME"'
+  distinct_tiles:
+    aggregate_type: count_distinct
+    sql: '"TILE_HASH"'
+  unvisited_documents:
+    aggregate_type: count_distinct
+    sql: '"DOC_ID"'
+    filters:
+      doc_views: 0
